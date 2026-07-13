@@ -1,0 +1,68 @@
+.footer {
+    background: var(--footerBg);
+    color: var(--whiteText);
+    padding: 2.5rem 1.25rem;
+}
+
+.gridContent {
+    flex-flow: wrap;
+    place-content: space-around space-evenly;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    margin: 0rem 1rem;
+}
+
+.title {
+    padding: 1.25rem 0rem 0.25rem 0rem;
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--whiteText);
+}
+
+.p {
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--whiteText);
+}
+
+.waLogo {
+    padding-right: 0.5rem;
+}
+
+.mapsLocation {
+    margin: 0.5rem 0rem;
+    padding: 0.5rem 1rem;
+    background: #4285F4;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.waButton {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0.5rem 0.75rem;
+    color: var(--whiteText);
+    background: #25D366;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: flex;
+}
+
+.copyrights {
+    margin-top: 1.875rem;
+    padding-top: 1.25rem;
+    text-align: center;
+    color: #8e8e8e;
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 0.875rem;
+}
