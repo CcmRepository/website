@@ -24,7 +24,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={`${poppins.variable} ${montserrat.variable}`} style={{ paddingTop: 64 }}>
+            <body className={`${poppins.variable} ${montserrat.variable} pt-16`}>
                 <Header />
                 {children}
             </body>

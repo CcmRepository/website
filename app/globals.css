@@ -1,36 +1,42 @@
-:root {
-    --headerBg_backup: #7E776C;
-    --headerBg: #263440;
-    --footerBg: #263440;
-    --background: #F3F2EE;
-    --foreground: #252226;
-    --whiteText: #ffffff;
-    --blackText: #252226;
-    --imageBorder: #263440;
-    --textBox: #E6E0D6;
+@import "tailwindcss";
+
+/* Design palette (kept identical to the original CSS variables) */
+@theme {
+    --color-brand: #263440;
+    /* header / footer / image border */
+    --color-cream: #F3F2EE;
+    /* page background */
+    --color-ink: #252226;
+    /* body / black text */
+    --color-textbox: #E6E0D6;
+    /* offering cards */
 }
 
-html,
-body {
-    max-width: 100vw;
-    overflow-x: hidden;
+/* Fonts injected by next/font (variables live on <body>) */
+@theme inline {
+    --font-poppins: var(--font-poppins);
+    --font-montserrat: var(--font-montserrat);
 }
 
-body {
-    color: var(--foreground);
-    background: var(--background);
-    font-family: Arial, Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+/* Base styles preserved from the original globals.css */
+@layer base {
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
+    html,
+    body {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
 
-a {
-    color: inherit;
-    text-decoration: none;
+    body {
+        color: var(--color-ink);
+        background: var(--color-cream);
+        font-family: Arial, Helvetica, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 }
