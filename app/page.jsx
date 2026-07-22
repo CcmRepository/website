@@ -62,6 +62,22 @@ const portfolioData = [
     { name: 'Church at PIK2' }
 ];
 
+// Reused Tailwind class strings (kept identical to the inline versions).
+const bodyText = 'text-ink font-montserrat text-base leading-6 text-justify hyphens-auto';
+const gridGroup = 'grid grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] gap-8 mt-4';
+
+// Standard content section with a heading (About / Scope / Offerings / Portfolio).
+function Section({ title, children }) {
+    return (
+        <section className="flex flex-col bg-cream">
+            <div className="my-3 mx-12">
+                <div className="py-2 font-poppins text-[1.75rem] text-ink">{title}</div>
+                {children}
+            </div>
+        </section>
+    );
+}
+
 export default function HomePage() {
     return (
         <div className="max-w-[100vw] mx-auto">
@@ -80,79 +96,67 @@ export default function HomePage() {
             </section>
 
             {/* About Us */}
-            <section className="flex flex-col bg-cream">
-                <div className="my-3 mx-12">
-                    <div className="py-2 font-poppins text-[1.75rem] text-ink">About Us</div>
-                    <p className="text-ink font-montserrat text-base leading-6 text-justify hyphens-auto">
-                        PT Cikal Citra Mapan, established in 1980, is dedicated to crafting bespoke furniture and interior contracting that reflect your style and vision. Our growth from a humble home industry to a respected furniture manufacturer speaks to our steadfast commitment to quality and craftsmanship.
-                    </p>
-                    <div className="flex justify-center my-8">
-                        <img className="rounded-xl w-full h-auto" src="/images/home/about_us.jpg" />
-                    </div>
+            <Section title="About Us">
+                <p className={bodyText}>
+                    PT Cikal Citra Mapan, established in 1980, is dedicated to crafting bespoke furniture and interior contracting that reflect your style and vision. Our growth from a humble home industry to a respected furniture manufacturer speaks to our steadfast commitment to quality and craftsmanship.
+                </p>
+                <div className="flex justify-center my-8">
+                    <img className="rounded-xl w-full h-auto" src="/images/home/about_us.jpg" />
                 </div>
-            </section>
+            </Section>
 
             {/* Scope of Work */}
-            <section className="flex flex-col bg-cream">
-                <div className="my-3 mx-12">
-                    <div className="py-2 font-poppins text-[1.75rem] text-ink">Scope of Work</div>
-                    <div className="grid grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] gap-8 mt-4">
-                        {scopeOfWorkData.map(data => (
-                            <div className="rounded-xl overflow-hidden bg-brand" key={data.id}>
-                                <img
-                                    src={data.image}
-                                    alt={data.name}
-                                    className="w-full h-auto object-cover"
-                                />
-                                <div className="px-3 py-2 font-poppins text-base font-semibold text-white">
-                                    {data.name}
-                                </div>
+            <Section title="Scope of Work">
+                <div className={gridGroup}>
+                    {scopeOfWorkData.map(data => (
+                        <div className="rounded-xl overflow-hidden bg-brand" key={data.id}>
+                            <img
+                                src={data.image}
+                                alt={data.name}
+                                className="w-full h-auto object-cover"
+                            />
+                            <div className="px-3 py-2 font-poppins text-base font-semibold text-white">
+                                {data.name}
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
-            </section>
+            </Section>
 
             {/* Our Offerings */}
-            <section className="flex flex-col bg-cream">
-                <div className="my-3 mx-12">
-                    <div className="py-2 font-poppins text-[1.75rem] text-ink">Our Offerings</div>
-                    <div className="grid grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] gap-8 mt-4">
-                        {offeringsData.map(data => (
-                            <div className="rounded-2xl bg-textbox overflow-hidden" key={data.id}>
-                                <div className="px-4 py-2 font-poppins text-xl font-medium text-ink">
-                                    {data.name}
-                                </div>
-                                <div className="px-4 py-2 font-poppins text-base italic text-ink">
-                                    {data.link}
-                                </div>
-                                <div className="px-4 py-2 text-ink font-montserrat text-base leading-6 text-justify hyphens-auto">
-                                    {data.text}
-                                </div>
+            <Section title="Our Offerings">
+                <div className={gridGroup}>
+                    {offeringsData.map(data => (
+                        <div className="rounded-2xl bg-textbox overflow-hidden" key={data.id}>
+                            <div className="px-4 py-2 font-poppins text-xl font-medium text-ink">
+                                {data.name}
                             </div>
-                        ))}
-                    </div>
+                            <div className="px-4 py-2 font-poppins text-base italic text-ink">
+                                {data.link}
+                            </div>
+                            <div className={`px-4 py-2 ${bodyText}`}>
+                                {data.text}
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            </section>
+            </Section>
 
             {/* Portfolio Preview */}
-            <section className="flex flex-col bg-cream">
-                <div className="my-3 mx-12">
-                    <div className="py-2 font-poppins text-[1.75rem] text-ink">Project Portfolio</div>
-                    <div className="text-ink font-montserrat text-base leading-6 text-justify hyphens-auto">
-                        We have successfully completed numerous projects, and we are eager to provide you with updates for the ongoing year. Keep an eye out for our latest developments and insights!
-                    </div>
-                    <div className="pt-4 font-poppins text-base font-medium text-ink leading-7">Year 2026 (Ongoing)</div>
-                    <ul className="list-disc pl-5">
-                        {portfolioData.map((p, i) => (
-                            <li key={i} className="pl-2 text-ink font-montserrat text-base leading-6">
-                                {p.name}
-                                {p.status && <span className="text-[#008000] font-montserrat text-base leading-6"> ({p.status})</span>}
-                            </li>
-                        ))}
-                    </ul>
+            <Section title="Project Portfolio">
+                <div className={bodyText}>
+                    We have successfully completed numerous projects, and we are eager to provide you with updates for the ongoing year. Keep an eye out for our latest developments and insights!
                 </div>
-            </section>
+                <div className="pt-4 font-poppins text-base font-medium text-ink leading-7">Year 2026 (Ongoing)</div>
+                <ul className="list-disc pl-5">
+                    {portfolioData.map((p, i) => (
+                        <li key={i} className="pl-2 text-ink font-montserrat text-base leading-6">
+                            {p.name}
+                            {p.status && <span className="text-[#008000] font-montserrat text-base leading-6"> ({p.status})</span>}
+                        </li>
+                    ))}
+                </ul>
+            </Section>
 
             <Footer />
         </div>

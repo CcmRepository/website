@@ -6,7 +6,6 @@ export default function Footer() {
     const whatsappNumber = '+6282121955954'; // Contact Number
     const message = 'Hello, I would like to inquire about your services.';
     const coordinates = [-6.388089210990726, 106.7204536860578]; // PT Cikal Citra Mapan
-    const destination = encodeURIComponent('PT Cikal Citra Mapan');
 
     const showMaps = () => {
         const url = `https://www.google.com/maps/dir/?api=1&destination=${coordinates[0]},${coordinates[1]}&travelmode=driving`;
@@ -14,52 +13,57 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-brand text-white py-10 px-5">
-            <div className="flex flex-row flex-wrap justify-between items-start content-start mx-4">
-                {/* Company Info */}
-                <div>
-                    <div className="pt-5 pb-1 font-poppins text-base font-semibold text-white">PT Cikal Citra Mapan</div>
-                    <p className="font-poppins text-base font-light text-white">
-                        Premium furniture & interior solutions.<br />
-                        Crafted with quality, precision, and passion.
-                    </p>
+        <footer className="bg-brand text-white">
+            <div className="mx-auto max-w-[75rem] px-5 py-12 sm:px-8">
+                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    {/* Company Info */}
+                    <div>
+                        <h3 className="font-poppins text-lg font-semibold">PT Cikal Citra Mapan</h3>
+                        <p className="mt-3 font-montserrat text-sm font-light leading-6 text-white/80">
+                            Premium furniture &amp; interior solutions.
+                            <br />
+                            Crafted with quality, precision, and passion.
+                        </p>
+                    </div>
+
+                    {/* Contact Info */}
+                    <div>
+                        <h3 className="font-poppins text-lg font-semibold">Contact Us</h3>
+                        <ul className="mt-3 flex flex-col gap-2 font-montserrat text-sm text-white/80">
+                            <li>📍 Gunung Sindur, Bogor Regency, West Java, Indonesia</li>
+                            <li>📧 mapansapa@gmail.com</li>
+                            <li>📞 +62 821-2195-5954</li>
+                        </ul>
+                        <button
+                            type="button"
+                            onClick={showMaps}
+                            className="mt-4 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-[#4285F4] px-4 py-2 font-montserrat text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                        >
+                            📍 Get Directions
+                        </button>
+                    </div>
+
+                    {/* Get in Touch */}
+                    <div>
+                        <h3 className="font-poppins text-lg font-semibold">Get in Touch</h3>
+                        <p className="mt-3 font-montserrat text-sm text-white/80">
+                            Have a project in mind? Chat with us directly.
+                        </p>
+                        <a
+                            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-2 font-montserrat text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FaWhatsapp size={20} color="#fff" />
+                            Chat on WhatsApp
+                        </a>
+                    </div>
                 </div>
 
-                {/* Contact Info */}
-                <div>
-                    <div className="pt-5 pb-1 font-poppins text-base font-semibold text-white">Contact Us</div>
-                    <p className="font-poppins text-base font-light text-white">
-                        📍 Gunung Sindur, Bogor Regency, West Java, Indonesia<br />
-                        📧 mapansapa@gmail.com<br />
-                        📞 +62 821-2195-5954
-                    </p>
+                <div className="mt-10 border-t border-white/15 pt-6 text-center font-montserrat text-sm text-white/50">
+                    © {new Date().getFullYear()} PT Cikal Citra Mapan. All rights reserved.
                 </div>
-
-                <div
-                    className="my-2 py-2 px-4 bg-[#4285F4] text-white border-none rounded-lg cursor-pointer font-semibold"
-                    onClick={showMaps}
-                >
-                    📍 Get Directions
-                </div>
-
-                {/* WhatsApp CTA */}
-                <div>
-                    <div className="pt-5 pb-1 font-poppins text-base font-semibold text-white">Get in Touch</div>
-                    <a
-                        className="flex flex-row items-center justify-evenly py-2 px-3 text-white bg-[#25D366] rounded-lg font-semibold"
-                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <FaWhatsapp className="pr-2" size={40} color="#fff" />
-                        Chat on WhatsApp
-                    </a>
-
-                </div>
-            </div>
-
-            <div className="mt-[1.875rem] pt-5 text-center text-[#8e8e8e] font-poppins text-sm">
-                © {new Date().getFullYear()} PT Cikal Citra Mapan. All rights reserved.
             </div>
         </footer>
     );

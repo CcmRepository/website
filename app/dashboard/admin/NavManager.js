@@ -53,7 +53,7 @@ export default function NavManager({ items }) {
                             aria-label={`Toggle ${item.label}`}
                             disabled={savingKey === item.key}
                             onClick={() => toggle(item.key, !item.enabled)}
-                            className={`relative h-6 w-11 shrink-0 rounded-full transition-colors disabled:opacity-60 ${
+                            className={`relative h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
                                 item.enabled ? 'bg-brand' : 'bg-[#d9d9d9]'
                             }`}
                         >

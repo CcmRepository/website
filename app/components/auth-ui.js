@@ -7,7 +7,7 @@ export const labelClass =
     'mb-1 block font-montserrat text-sm font-medium text-ink';
 
 export const primaryButtonClass =
-    'w-full rounded-lg bg-brand py-2.5 font-poppins text-base font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60';
+    'w-full cursor-pointer rounded-lg bg-brand py-2.5 font-poppins text-base font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60';
 
 export function AuthShell({ title, subtitle, children }) {
     return (

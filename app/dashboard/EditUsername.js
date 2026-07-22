@@ -60,7 +60,7 @@ export default function EditUsername({ initialUsername }) {
             <button
                 type="submit"
                 disabled={loading}
-                className="mt-4 rounded-lg bg-brand px-5 py-2.5 font-poppins text-base font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-4 cursor-pointer rounded-lg bg-brand px-5 py-2.5 font-poppins text-base font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
                 {loading ? 'Saving…' : 'Save Changes'}
             </button>

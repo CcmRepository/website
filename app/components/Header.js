@@ -75,12 +75,12 @@ export default function Header({ navItems = [] }) {
         await supabase.auth.signOut();
         setAccountOpen(false);
         setMenuOpen(false);
-        router.push('/login');
+        router.push('/');
         router.refresh();
     };
 
     const menuItemClass =
-        'block w-full px-4 py-2 text-left font-montserrat text-sm text-ink transition-colors hover:bg-cream';
+        'block w-full cursor-pointer px-4 py-2 text-left font-montserrat text-sm text-ink transition-colors hover:bg-cream';
 
     return (
         <header
@@ -109,7 +109,7 @@ export default function Header({ navItems = [] }) {
                             <button
                                 type="button"
                                 onClick={() => setAccountOpen((o) => !o)}
-                                className="flex items-center gap-1.5 rounded-md border border-white/40 px-3 py-1 text-white font-medium transition-colors hover:bg-white/10"
+                                className="flex cursor-pointer items-center gap-1.5 rounded-md border border-white/40 px-3 py-1 text-white font-medium transition-colors hover:bg-white/10"
                             >
                                 Dashboard
                                 <svg
@@ -175,7 +175,7 @@ export default function Header({ navItems = [] }) {
                             {isAdmin && (
                                 <Link href="/dashboard/admin" className="py-4 px-5 border-b-2 border-[#ECECEC] font-semibold text-brand" onClick={() => setMenuOpen(false)}>Admin Area</Link>
                             )}
-                            <button type="button" onClick={handleSignOut} className="py-4 px-5 border-b-2 border-[#ECECEC] text-left font-semibold text-brand">Sign Out</button>
+                            <button type="button" onClick={handleSignOut} className="cursor-pointer py-4 px-5 border-b-2 border-[#ECECEC] text-left font-semibold text-brand">Sign Out</button>
                         </>
                     ) : (
                         <Link href="/login" className="py-4 px-5 border-b-2 border-[#ECECEC] font-semibold text-brand" onClick={() => setMenuOpen(false)}>Login</Link>
