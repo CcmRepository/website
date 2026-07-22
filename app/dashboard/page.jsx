@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/app/utils/supabase/server';
-import SignOutButton from './SignOutButton';
+import { getUserRole } from '@/app/utils/roles';
 import EditUsername from './EditUsername';
 
 export default async function DashboardPage() {
@@ -15,19 +15,24 @@ export default async function DashboardPage() {
     }
 
     const username = user.user_metadata?.username ?? '';
+    const role = await getUserRole(supabase, user.id);
 
     return (
         <div className="flex min-h-[calc(100vh-4rem)] flex-col bg-cream px-5 py-12 sm:px-12">
             <div className="mx-auto w-full max-w-4xl">
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                        <h1 className="font-poppins text-[1.75rem] font-medium text-brand">Dashboard</h1>
-                        <p className="mt-1 font-montserrat text-base text-ink">
-                            Welcome back, {username || user.email}
-                        </p>
-                    </div>
-                    <SignOutButton />
+                <div className="flex items-center gap-3">
+                    <h1 className="font-poppins text-[1.75rem] font-medium text-brand">Profile</h1>
+                    <span
+                        className={`rounded-full px-3 py-0.5 font-montserrat text-xs font-semibold uppercase tracking-wide ${
+                            role === 'admin' ? 'bg-brand text-white' : 'bg-[#E6E0D6] text-ink'
+                        }`}
+                    >
+                        {role}
+                    </span>
                 </div>
+                <p className="mt-1 font-montserrat text-base text-ink">
+                    Manage your account information.
+                </p>
 
                 <div className="mt-8 rounded-2xl border border-[#E6E0D6] bg-white p-8">
                     <h2 className="font-poppins text-xl font-medium text-ink">Account</h2>
@@ -39,10 +44,6 @@ export default async function DashboardPage() {
                         <div>
                             <dt className="font-montserrat text-sm font-medium text-ink/60">Email</dt>
                             <dd className="font-montserrat text-base text-ink">{user.email}</dd>
-                        </div>
-                        <div>
-                            <dt className="font-montserrat text-sm font-medium text-ink/60">User ID</dt>
-                            <dd className="break-all font-montserrat text-base text-ink">{user.id}</dd>
                         </div>
                     </dl>
                 </div>

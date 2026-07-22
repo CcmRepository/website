@@ -113,6 +113,43 @@ if (!user && pathname.startsWith('/route-baru')) {
 
 ---
 
+## Role & Admin
+
+Role pengguna disimpan di tabel **`public.profiles`** (bukan `user_metadata`, agar user tidak bisa menaikkan dirinya sendiri menjadi admin).
+
+### Setup (wajib dijalankan sekali)
+
+Jalankan migrasi [supabase/migrations/0001_profiles_and_roles.sql](../supabase/migrations/0001_profiles_and_roles.sql) di **Supabase Dashboard → SQL Editor**. Migrasi ini:
+
+1. Membuat tabel `profiles` (`id`, `role`, `created_at`) + Row Level Security.
+2. Membuat trigger `on_auth_user_created` → tiap user baru otomatis dapat profil.
+   - **User pertama** (tabel masih kosong) → `admin`
+   - User berikutnya → `user`
+3. Backfill user yang sudah ada, lalu mempromosikan user paling awal menjadi `admin`.
+
+Aman dijalankan berulang (idempotent).
+
+### Cara pakai di kode
+
+```js
+import { getUserRole } from '@/app/utils/roles';
+
+const role = await getUserRole(supabase, user.id); // 'admin' | 'user'
+```
+
+`getUserRole` mengembalikan `'user'` sebagai fallback bila migrasi belum dijalankan, sehingga aplikasi tetap berjalan. Di `/dashboard`, badge role ditampilkan dan panel **Admin Area** hanya muncul untuk admin.
+
+### Mengubah role manual
+
+Lewat SQL Editor:
+
+```sql
+update public.profiles set role = 'admin'
+where id = (select id from auth.users where email = 'seseorang@contoh.com');
+```
+
+---
+
 ## Catatan Keamanan
 
 - Selalu gunakan `supabase.auth.getUser()` (bukan `getSession()`) di sisi server untuk verifikasi, karena `getUser()` memvalidasi token ke server Supabase.

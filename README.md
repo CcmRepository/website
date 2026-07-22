@@ -74,6 +74,8 @@ Buka [http://localhost:3000](http://localhost:3000).
    - **Site URL**: `http://localhost:3000` (dev) / domain produksi
    - **Redirect URLs**: tambahkan `http://localhost:3000/auth/callback` (dan `https://<domain-produksi>/auth/callback`)
 4. **Email provider**: **Authentication → Providers → Email**. Jika **Confirm email** aktif, pengguna wajib mengonfirmasi lewat email sebelum bisa login. Untuk pengembangan cepat, opsi ini bisa dimatikan.
+5. **Role & admin**: jalankan migrasi [supabase/migrations/0001_profiles_and_roles.sql](supabase/migrations/0001_profiles_and_roles.sql) di **SQL Editor**. Ini membuat tabel `profiles` + role, dan menjadikan **user pertama sebagai admin** secara otomatis.
+6. **Menu halaman**: jalankan migrasi [supabase/migrations/0002_nav_items.sql](supabase/migrations/0002_nav_items.sql) di **SQL Editor**. Ini membuat tabel `nav_items` sehingga admin bisa mengaktifkan/menonaktifkan halaman di menu header lewat **Admin Area**.
 
 > ⚠️ Tanpa Redirect URL yang benar, link konfirmasi & reset password dari email akan ditolak Supabase.
 
